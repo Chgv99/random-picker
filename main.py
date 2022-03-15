@@ -12,6 +12,7 @@ import time
 # Params
 #keyword = sys.argv[1]
 path = sys.argv[1]
+print(path)
 extensions = []
 
 # Extensions
@@ -24,7 +25,6 @@ if not os.path.isdir(path):
 #if keyword == FileType.IMAGE:
 #    extensions.append(".png");
 
-#files = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
 files = []
 for (dirpath, dirnames, filenames) in os.walk(path):
     files.extend(filenames)
@@ -35,4 +35,4 @@ print("Selected file: " + file)
 
 #im = Image.open(os.path.join(path, f))
 #im.show()
-os.startfile(os.path.join(path, file))
+os.startfile(os.path.normpath(os.path.join(path, file)))
