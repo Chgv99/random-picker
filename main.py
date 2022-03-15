@@ -11,9 +11,14 @@ import time
 
 # Params
 #keyword = sys.argv[1]
+
 path = sys.argv[1]
-print(path)
-extensions = []
+if (len(sys.argv) > 2):
+    num = int(sys.argv[2])
+else:
+    num = 1
+
+#extensions = []
 
 # Extensions
 #image = [ ".png", ".jpg", ".png", ".png", ]
@@ -27,12 +32,22 @@ if not os.path.isdir(path):
 
 files = []
 for (dirpath, dirnames, filenames) in os.walk(path):
-    files.extend(filenames)
+    for x in filenames:
+        #if x.endswith(".shp"):
+        #print(os.path.join(dirpath, x))
+        files.append(os.path.join(dirpath, x))
+print("files: ")
+print(files)
 
 random.seed(time.time())
-file = files.pop(random.randrange(0, len(files)))
-print("Selected file: " + file)
+for x in range(num):
+    file = files.pop(random.randrange(0, len(files)))
+    print("Selected file: " + file)
 
-#im = Image.open(os.path.join(path, f))
-#im.show()
-os.startfile(os.path.normpath(os.path.join(path, file)))
+    # im = Image.open(os.path.join(path, f))
+    # im.show()
+    print("path: ")
+    print(os.path.normpath(os.path.join(path, file)))
+    print(os.path.join(path, file))
+
+    os.startfile(os.path.join(path, file))
