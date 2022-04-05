@@ -4,6 +4,7 @@ import os
 import random
 #from datetime import datetime
 import time
+import datetime
 
 #class FileType(Enum):
 #    IMAGE = 1
@@ -12,11 +13,18 @@ import time
 # Params
 #keyword = sys.argv[1]
 
+date = datetime.datetime.now()
+log = "\n############ " \
+      + date.strftime("%d-%m-%y %H:%M:%S") + " ############\n\n"
+
 path = sys.argv[1]
 if (len(sys.argv) > 2):
     num = int(sys.argv[2])
+    log += "Bulk: Yes\n\nBulk size: " + str(num)
 else:
     num = 1
+    log += "Bulk: No"
+log += "\n\n-------------------------------------------"
 
 #extensions = []
 
@@ -36,18 +44,14 @@ for (dirpath, dirnames, filenames) in os.walk(path):
         #if x.endswith(".shp"):
         #print(os.path.join(dirpath, x))
         files.append(os.path.join(dirpath, x))
-print("files: ")
-print(files)
 
 random.seed(time.time())
 for x in range(num):
     file = files.pop(random.randrange(0, len(files)))
-    print("Selected file: " + file)
 
-    # im = Image.open(os.path.join(path, f))
-    # im.show()
-    print("path: ")
-    print(os.path.normpath(os.path.join(path, file)))
-    print(os.path.join(path, file))
+    log += "\n\nSelected file:\n\n" + file
+    log += "\n\n-------------------------------------------"
 
     os.startfile(os.path.join(path, file))
+log += "\n"
+print(log)
