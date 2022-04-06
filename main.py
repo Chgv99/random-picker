@@ -13,7 +13,7 @@ parser.add_argument('dir', type=str,
 parser.add_argument('--bulk', type=int,
                     default=1,
                     help='Bulk size.')
-parser.add_argument('--log',
+parser.add_argument('--log', nargs='+',
                     help='Saves log.')
 args = parser.parse_args()
 
