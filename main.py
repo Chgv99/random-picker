@@ -10,10 +10,10 @@ import argparse
 parser = argparse.ArgumentParser(description='Pick a random file from directory.')
 parser.add_argument('dir', type=str,
                     help='Directory to search.')
-parser.add_argument('--bulk', type=int,
+parser.add_argument('-b', '--bulk', type=int,
                     default=1,
                     help='Bulk size.')
-parser.add_argument('--log', nargs='+',
+parser.add_argument('-nl', '--nolog', action='store_true',
                     help='Saves log.')
 args = parser.parse_args()
 
@@ -25,18 +25,19 @@ args = parser.parse_args()
 # keyword = sys.argv[1]
 
 date = datetime.datetime.now()
-log = "\n############ " \
-      + date.strftime("%d-%m-%y %H:%M:%S") + " ############\n\n"
+log = "\n################ " \
+      + date.strftime("%H:%M:%S") + " ################\n\n"
 
 #path = sys.argv[1]
 path = args.dir
-if (len(sys.argv) > 2):
-    num = int(sys.argv[2])
-    log += "Bulk: Yes\n\nBulk size: " + str(num)
+#print(args.bulk)
+#if (len(sys.argv) > 2):
+if args.bulk > 1:
+    log += "Bulk: Yes\n\nBulk size: " + str(args.bulk)
 else:
     num = 1
     log += "Bulk: No"
-log += "\n\n-------------------------------------------"
+log += "\n\n------------------------------------------"
 
 # extensions = []
 
@@ -58,12 +59,23 @@ for (dirpath, dirnames, filenames) in os.walk(path):
         files.append(os.path.join(dirpath, x))
 
 random.seed(time.time())
-for x in range(num):
+text = ""
+for x in range(args.bulk):
     file = files.pop(random.randrange(0, len(files)))
-
+    relpath = os.path.relpath(file, args.dir)
     log += "\n\nSelected file:\n\n" + file
-    log += "\n\n-------------------------------------------"
+    log += "\n\n------------------------------------------"
+    text += "\n\nSelected file:\n\n" + relpath
+    text += "\n\n------------------------------------------"
+
 
     os.startfile(os.path.join(path, file))
 log += "\n"
-print(log)
+
+if not args.nolog:
+    #log_det + log
+    log_file = r'log/' + date.strftime("%y-%m-%d") + '.txt'
+    file = open(log_file, "a")
+    file.write(log)
+    file.close()
+print(text)
