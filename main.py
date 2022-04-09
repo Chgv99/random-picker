@@ -65,7 +65,7 @@ for x in range(args.bulk):
     relpath = os.path.relpath(file, args.dir)
     log += "\n\nSelected file:\n\n" + file
     log += "\n\n------------------------------------------"
-    text += "\n\nSelected file:\n\n" + relpath
+    text += "\n\nSelected file:\n\n" + os.path.basename(args.dir) + "\\" + relpath
     text += "\n\n------------------------------------------"
 
 
@@ -74,7 +74,12 @@ log += "\n"
 
 if not args.nolog:
     #log_det + log
-    log_file = r'log/' + date.strftime("%y-%m-%d") + '.txt'
+    try:
+        os.mkdir('logs', 0o755)
+    except:
+        pass
+
+    log_file = r'logs/' + date.strftime("%y-%m-%d") + '.txt'
     file = open(log_file, "a")
     file.write(log)
     file.close()
