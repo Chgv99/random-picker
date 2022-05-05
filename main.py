@@ -14,7 +14,7 @@ parser.add_argument('-b', '--bulk', type=int,
                     default=1,
                     help='Bulk size.')
 parser.add_argument('-nl', '--nolog', action='store_true',
-                    help='Saves log.')
+                    help='Disables log file for this execution.')
 args = parser.parse_args()
 
 # class FileType(Enum):
