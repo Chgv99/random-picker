@@ -1,4 +1,4 @@
-# random-picker (wip)
+# random-picker
 <p align="center">
   <b>A random file selector.</b>
 </p>
