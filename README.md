@@ -7,11 +7,13 @@
 
 Execute main.py through the command prompt using **Python 3.10 or higher**.
 
-`python main.py <directory> [bulk-size]`
+`python main.py [-h] [-b, --bulk] [-nl, --nolog] directory`
 
-The `directory` must be enclosed in quotes.
+`directory` must be enclosed in quotes.
 
-The `bulk-size` parameter is just the number of files to be opened at once. It is optional.
+`bulk` is the number of files to be opened at once. Optional.
+
+`nolog` disables log for that execution. Optional.
 
 ---
 <p align="center">
