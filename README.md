@@ -1,5 +1,6 @@
-# rpicker
-
+<h1 align="center">
+  RPicker
+</h1>
 
 <p align="center">
   <b>A random file selector.</b><br><br>
