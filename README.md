@@ -2,8 +2,8 @@
 
 
 <p align="center">
-  <b>A random file selector.</b>
-  <img src="https://img.shields.io/badge/Project-WIP-orange"> <img src="https://img.shields.io/badge/Documentation-Outdated-orange"> <br>
+  <b>A random file selector.</b><br><br>
+  <img src="https://img.shields.io/badge/Project-WIP-orange"> <img src="https://img.shields.io/badge/Documentation-Outdated-orange">
 </p>
 
 ## Usage
